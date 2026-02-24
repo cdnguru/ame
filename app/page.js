@@ -1,3 +1,10 @@
+const navItems = [
+  { label: 'Platform', href: '#platform' },
+  { label: 'Snapshots', href: '#snapshots' },
+  { label: 'Impact', href: '#impact' },
+  { label: 'Pricing', href: '#pricing' }
+];
+
 const partnerData = [
   { name: 'HanCom Distribution Alliance', fitRatio: '90%', sourcedPipeline: '$1.4M' },
   { name: 'Seoul Enterprise Cloud Network', fitRatio: '74%', sourcedPipeline: '$820K' },
@@ -14,6 +21,12 @@ const quarterlyPipeline = [
   { market: 'Japan', leads: 36, progress: 90 },
   { market: 'South Korea', leads: 8, progress: 20 },
   { market: 'Taiwan', leads: 14, progress: 35 }
+];
+
+const transformationStats = [
+  { label: 'Always-on execution', value: '24/7/365', detail: 'Agents continuously prospect, enrich, and route accounts.' },
+  { label: 'Program velocity', value: '3.1x', detail: 'Faster lead-to-meeting cycles with coordinated pod actions.' },
+  { label: 'Cost efficiency', value: '-42%', detail: 'Lower regional launch cost before first local headcount.' }
 ];
 
 const analystQuotes = [
@@ -34,26 +47,63 @@ const analystQuotes = [
   }
 ];
 
-const transformationStats = [
-  { label: 'Always-on execution', value: '24/7/365', detail: 'Agents continuously prospect, enrich, and route accounts.' },
-  { label: 'Program velocity', value: '3.1x', detail: 'Faster lead-to-meeting cycles with coordinated pod actions.' },
-  { label: 'Cost efficiency', value: '-42%', detail: 'Lower regional launch cost before first local headcount.' }
+const costData = [
+  { metric: 'Traditional market-entry setup', before: '$480K', after: '$278K' },
+  { metric: 'Time to first qualified pipeline', before: '22 weeks', after: '7 weeks' },
+  { metric: 'Cost per qualified opportunity', before: '$3,200', after: '$1,180' }
+];
+
+const featureCards = [
+  {
+    title: 'Pod Orchestration Layer',
+    detail: 'Coordinate SDR outreach, local marketing, and channel plays in one operating surface with weekly signal scoring.'
+  },
+  {
+    title: 'Managed Service Mode',
+    detail: 'Switch to full-service execution and receive qualified meetings and pipeline while we run daily operations.'
+  },
+  {
+    title: 'Headcount Signal Engine',
+    detail: 'Use real pipeline density, conversion quality, and cost curves to decide when a local hire becomes ROI-positive.'
+  }
 ];
 
 export default function HomePage() {
   return (
     <main className="page">
-      <section className="hero">
-        <p className="eyebrow">Agentic Market Entry</p>
-        <h1>Deploy market entry pods that automate global pipeline generation.</h1>
+      <header className="site-nav">
+        <div className="brand">Agentic Market Entry</div>
+        <nav>
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href}>{item.label}</a>
+          ))}
+        </nav>
+        <a className="nav-cta" href="#pricing">Book Demo</a>
+      </header>
+
+      <section className="hero" id="platform">
+        <p className="eyebrow">Launches Q3 2026</p>
+        <h1>Market entry pods that generate pipeline before you place your first local headcount.</h1>
         <p className="subtitle">
           Blend SDR, marketing, and partner/channel execution into one AI-native operating layer. Run it as SaaS or
-          as a managed service that delivers qualified pipeline before you commit local headcount.
+          as a managed service that gives you qualified pipeline with clear hiring signals by market.
         </p>
-        <div className="launch-pill">Launching Q3 2026 • Built to scale beyond 30 markets</div>
+        <div className="hero-actions">
+          <a className="btn btn-primary" href="#snapshots">See Live Snapshots</a>
+          <a className="btn btn-secondary" href="#impact">View Analyst Data</a>
+        </div>
       </section>
 
-      <section className="snapshots" aria-label="Product snapshots">
+      <section className="feature-grid">
+        {featureCards.map((card) => (
+          <article className="feature-card" key={card.title}>
+            <h2>{card.title}</h2>
+            <p>{card.detail}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="snapshots" id="snapshots" aria-label="Product snapshots">
         <article className="card">
           <div className="card-header">
             <h2>Snapshot 01 · Lead Operations Table</h2>
@@ -71,24 +121,9 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Outbound SDR</td>
-                  <td>74</td>
-                  <td>22</td>
-                  <td>29.7%</td>
-                </tr>
-                <tr>
-                  <td>Inbound Korean Chat</td>
-                  <td>46</td>
-                  <td>13</td>
-                  <td>28.2%</td>
-                </tr>
-                <tr>
-                  <td>Partner Referrals</td>
-                  <td>8</td>
-                  <td>4</td>
-                  <td>50.0%</td>
-                </tr>
+                <tr><td>Outbound SDR</td><td>74</td><td>22</td><td>29.7%</td></tr>
+                <tr><td>Inbound Korean Chat</td><td>46</td><td>13</td><td>28.2%</td></tr>
+                <tr><td>Partner Referrals</td><td>8</td><td>4</td><td>50.0%</td></tr>
               </tbody>
             </table>
           </div>
@@ -138,9 +173,7 @@ export default function HomePage() {
                   <span>{entry.market}</span>
                   <strong>{entry.leads} leads</strong>
                 </div>
-                <div className="bar-track">
-                  <div className="bar-fill" style={{ width: `${entry.progress}%` }} />
-                </div>
+                <div className="bar-track"><div className="bar-fill" style={{ width: `${entry.progress}%` }} /></div>
               </div>
             ))}
           </div>
@@ -148,12 +181,9 @@ export default function HomePage() {
         </article>
       </section>
 
-      <section className="insights">
-        <h2>How agentic pods transform market entry</h2>
-        <p className="muted">
-          Do more with less: agents run 24/7/365, coordinate every channel, and pave the way for your first local
-          headcount with evidence-backed timing.
-        </p>
+      <section className="insights" id="impact">
+        <h2>Analyst perspective: how AI changes global expansion economics</h2>
+        <p className="muted">Do more with less: agents run 24/7/365 to reduce setup overhead, accelerate first pipeline, and de-risk headcount timing.</p>
 
         <div className="stat-grid">
           {transformationStats.map((stat) => (
@@ -165,6 +195,22 @@ export default function HomePage() {
           ))}
         </div>
 
+        <div className="cost-panel">
+          <h3>Market entry cost benchmark (analyst modeled)</h3>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Metric</th><th>Legacy Motion</th><th>With Agentic Pods</th></tr>
+              </thead>
+              <tbody>
+                {costData.map((row) => (
+                  <tr key={row.metric}><td>{row.metric}</td><td>{row.before}</td><td>{row.after}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div className="quote-grid">
           {analystQuotes.map((item) => (
             <blockquote key={item.source}>
@@ -174,6 +220,44 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <section className="pricing" id="pricing">
+        <h2>Launch-ready commercial options</h2>
+        <div className="pricing-grid">
+          <article className="price-card">
+            <h3>SaaS Control Plane</h3>
+            <p className="price">$4,900<span>/month</span></p>
+            <ul>
+              <li>Pod orchestration workspace</li>
+              <li>Regional signal dashboards</li>
+              <li>Partner fit scoring</li>
+            </ul>
+          </article>
+          <article className="price-card featured">
+            <h3>Managed Service</h3>
+            <p className="price">$12,000<span>/month</span></p>
+            <ul>
+              <li>Done-for-you pod operations</li>
+              <li>Qualified meetings and pipeline</li>
+              <li>Weekly headcount signal review</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer className="site-footer">
+        <div>
+          <strong>Agentic Market Entry</strong>
+          <p>AI-driven pipeline generation for global expansion teams.</p>
+        </div>
+        <div className="footer-links">
+          <a href="#platform">Platform</a>
+          <a href="#snapshots">Snapshots</a>
+          <a href="#impact">Impact</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <p className="copyright">© 2026 Agentic Market Entry. All rights reserved.</p>
+      </footer>
     </main>
   );
 }
